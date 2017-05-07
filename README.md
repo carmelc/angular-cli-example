@@ -2,27 +2,25 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
 
-## Development server
+## It is aimed to show how to load an angular project as a GH page.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+See https://carmelc.github.io/angular-cli-example/dist/index.html for a running example.
 
-## Code scaffolding
+There are two ways to be able to run an Angular static project as a Github Page:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+1. Use the Master branch (shown in this example but considered as a 'dirty' way)
+   1. Remove dist folder (or any other output folder used in runtime) from .gitignore file
+   2. Run your build
+   3. Push your changes
+   4. make sure that the index.html file in your runtime folder (dist folder in this repo) does not define base ur in the <head> section. If there is such definition, remove it.
+You can see how was it done in [this commit](https://github.com/carmelc/angular-cli-example/commit/d83e38881ad327e1ae3855795d3037cdc934bb97)
+   5. In the repository Settings (top right of the page in github) in the *GitHub Pages* section, select master branch from the dropdown and click Save.
+   6. Open https://{username}.github.io/{repo-name}/{path to index.html}/index.html 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+2. Create a dedicated branch called gh-pages
+   1. Create a new branch called gh-pages (git checkout -b gh-pages)
+   2. Delete content of .gitignore file (do not ignore any file)
+   3. Delete all the sources from the main folder
+   4. Copy the content of the products directory (e.g. dist in Angular CLI) into the main folder, make sure that the index.html file is in the root folder
+   5. In the repository Settings (top right of the page in github) in the *GitHub Pages* section, select your branch from the dropdown and click Save.
+   6. open https://{username}.github.io/{repo-name}
